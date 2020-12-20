@@ -1,7 +1,7 @@
 const socket = io('/');
 const videoGrid = document.getElementById('video-grid');
 const myPeer = new Peer(undefined, {
-    host: '/',
+    host: 'https://videowebrtc33.herokuapp.com/',
     port: '3001'
 });
 const peers = {};
@@ -33,7 +33,7 @@ navigator.mediaDevices.getUserMedia({
 
 socket.on('user-disconnected', userId => {
     console.log("USER DISCONNECTED " + userId);
-    peers[userId].close();
+    if (peers[userId]) peers[userId].close();
 });
 
 
